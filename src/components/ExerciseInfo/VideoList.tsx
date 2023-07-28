@@ -164,7 +164,7 @@ const VideoInn = styled.div`
     position: relative;
     max-width: 1440px;
     height: 100%;
-    margin: 20px auto 0;
+    margin: 120px auto 0;
     padding: 20px 60px;
     background-color: #f8f8f8;
 `;

@@ -5,7 +5,7 @@ import styled from '@emotion/styled';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-// import LogoImg from './../../assets/logo.png';
+import LogoImg from './../../assets/logo.png';
 
 // headerMainBar
 function Header() {
@@ -24,8 +24,8 @@ function Header() {
       <div className="top-bar" css={topBar}>
         <Logo className="logo">
           <Link to="/">
-            <span>FitTogether</span>
-            {/* <img src={LogoImg} alt="logo" css={imgLogo} /> */}
+            <span className="blind">FitTogether</span>
+            <img src={LogoImg} alt="logo" css={imgLogo} />
           </Link>
         </Logo>
         <div className="icon-section">
@@ -96,21 +96,6 @@ function Header() {
                 <span>운동 정보</span>
               </Link>
             </li>
-            <li css={menuLi}>
-              <Link to="/findMate">
-                <span>운동 메이트 찾기</span>
-              </Link>
-            </li>
-            <li css={menuLi}>
-              <Link to="/community">
-                <span>커뮤니티</span>
-              </Link>
-            </li>
-            <li css={menuLi}>
-              <Link to="/myPage">
-                <span>마이 페이지</span>
-              </Link>
-            </li>
           </ul>
         </nav>
       </div>
@@ -120,11 +105,16 @@ function Header() {
 
 // headerInn
 const headerInn = css`
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   max-width: 1440px;
-  height: 100px;
+  height: 110px;
   margin: 0 auto;
   padding: 10px 60px;
+  z-index: 2;
 `;
 
 // topBar
@@ -138,7 +128,7 @@ const Logo = styled.h1`
   flex: 3;
 `;
 const imgLogo = css`
-  width: 300px;
+  width: 250px;
 `;
 const iconList = css`
   display: flex;
@@ -163,6 +153,7 @@ const SignInLink = styled(Link)`
   display: block;
   width: 70px;
 `;
+
 // bellBtn 클릭 시 팝업
 const BellPop = styled.div`
   position: absolute;
@@ -174,15 +165,29 @@ const headerMainBar = css`
   justify-content: flex-start;
   align-items: center;
 `;
-
 const Menu = css`
   display: flex;
   align-items: center;
 `;
 const menuLi = css`
-    padding: 0 20px
-    &:first-child {
-        padding: 0 30px;
+    margin-bottom: 15px;
+    &:first-of-type {
+        // padding: 0 30px;
+    }
+
+    & a {
+      display: inline-block;
+      font-weight: 500;
+      padding: 5px 10px;
+      margin-bottom: 5px;
+      border-radius: 5px;
+    }
+
+    & a:hover {
+      display: inline-block;
+      color: #fff;
+      background-color: #7F5539;
+      transition: all 0.3s;
     }
 `;
 const MenuBtn = styled.button`

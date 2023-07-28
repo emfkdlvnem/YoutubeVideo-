@@ -5,7 +5,7 @@ import styled from '@emotion/styled';
 // import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-// import FooterLogoImg from "./../../assets/logo-footer.png";
+import FooterLogoImg from "./../../assets/logo-footer.png";
 
 function Footer() {
     return (
@@ -13,8 +13,8 @@ function Footer() {
             <div className="footer-main-bar">
                 <FooterLogo className="logo">
                     <Link to="/">
-                        <span>FitTogether</span>
-                        {/* <img src={FooterLogoImg} alt="logo" css={imgFooterLogo}/> */}
+                        <span className="blind">FitTogether</span>
+                        <img src={FooterLogoImg} alt="logo" css={imgFooterLogo}/>
                     </Link>
                 </FooterLogo>
                 <FooterInfo className="footer-info">
@@ -78,16 +78,17 @@ function Footer() {
 // footerInn
 const footerInn = css`
     position: relative;
+    bottom: 0;
     max-width: 1440px;
     height: 100px;
-    margin: 0 auto;
+    margin: 100px auto 0;
     padding: 10px 60px;
 `;
 const FooterLogo = styled.h1`
     margin-bottom: 10px;
 `;
 const imgFooterLogo = css`
-    width: 261px;
+    width: 250px;
 `;
 
 const FooterInfo = styled.div`

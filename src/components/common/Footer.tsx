@@ -9,16 +9,16 @@ import FooterLogoImg from "./../../assets/logo-footer.png";
 
 function Footer() {
     return (
-        <div className="footer-inn" css={footerInn}>
-            <div className="footer-main-bar">
-                <FooterLogo className="logo">
+        <FooterInn>
+            <FooterMainBar>
+                <FooterLogo>
                     <Link to="/">
                         <span className="blind">FitTogether</span>
                         <img src={FooterLogoImg} alt="logo" css={imgFooterLogo}/>
                     </Link>
                 </FooterLogo>
-                <FooterInfo className="footer-info">
-                    <FooterInfoLeft className="company-info-left">
+                <FooterInfo>
+                    <FooterInfoLeft>
                         <ul>
                             <li className="address">
                                 <i className="fa-solid fa-location-dot"></i>
@@ -50,7 +50,7 @@ function Footer() {
                     </FooterInfoLeft>
                     <FooterInfoRight className="company-info-right">
                         <ul>
-                            <li>
+                            <li className="company-number">
                                 <p className="txt">등록번호 : 000-00-00000</p>
                             </li>
                             <li className="copyright">
@@ -70,19 +70,22 @@ function Footer() {
                         </ul>
                     </FooterInfoRight>
                 </FooterInfo>
-            </div>
-        </div>
+            </FooterMainBar>
+        </FooterInn>
     );
 }
 
 // footerInn
-const footerInn = css`
+const FooterInn = styled.div`
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    background-color: #263238;
+`;
+const FooterMainBar = styled.div`
     position: relative;
     bottom: 0;
     max-width: 1440px;
-    height: 100px;
     margin: 100px auto 0;
-    padding: 10px 60px;
+    padding: 20px 60px;
 `;
 const FooterLogo = styled.h1`
     margin-bottom: 10px;
@@ -98,23 +101,43 @@ const FooterInfo = styled.div`
 `;
 const FooterInfoLeft =styled.div`
     margin-right: 150px;
-    
-    ul li.tel ul {
+    color: #fff;
+
+    .address {
+        margin-bottom: 10px;
+    }
+    .address,
+    .tel ul,
+    .phone,
+    .fax,
+    .service {
         display: flex;
         align-items: center;  
     }
-    ul li.tel ul li.bar span {
+    .txt {
+        margin-left: 10px
+    }
+    .tel ul li.bar span {
         display: inline-block;
         margin: 0 10px
     }
 `;
 
 const FooterInfoRight = styled.div`
-    ul li.copyright ul {
+    color: #fff;
+
+    .company-number {
+        margin-bottom: 10px;
+    }
+    .copyright ul,
+    .copyright ul li:first-of-type {
         display: flex;
         align-items: center;        
+    }
+    .copyright ul li:first-of-type .txt {
+        margin-left: 10px;
     }    
-    ul li.copyright ul li.bar span {
+    .copyright ul li.bar span {
         display: inline-block;
         margin: 0 10px
     }

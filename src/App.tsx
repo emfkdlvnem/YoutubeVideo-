@@ -6,6 +6,8 @@ import Footer from './components/common/Footer';
 import MainPage from './pages//MainPage';
 import ExerciseInfo from './pages/ExerciseInfo/ExerciseInfo';
 
+import ScrollTopButton from './components/common/ScrollTopButton'; 
+
 import "./index.css";
 
 function App() {
@@ -22,6 +24,7 @@ function App() {
 						<Route path='/exerciseInfo/:slideNumber' element={<ExerciseInfo />} />
 				</Routes>
 			<Footer />
+			<ScrollTopButton />
 		</BrowserRouter>
 	);
 }

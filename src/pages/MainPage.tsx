@@ -17,9 +17,6 @@ const MainPage: React.FC = () => {
     const totalSlides = 3;
     const slideDuration = 3000;
     
-    //scroll
-    const [showScrollTopButton, setShowScrollTopButton] = useState(false);
-    
     //tab
     const [activeTab, setActiveTab] = useState('탭버튼01');
 
@@ -53,24 +50,6 @@ const MainPage: React.FC = () => {
         setActiveTab(tab);
     };
     
-      // ScrollToTopButton
-    useEffect(() => {
-        const handleScroll = () => {
-            if (window.scrollY > 200) { 
-                setShowScrollTopButton(true);
-            } else {
-                setShowScrollTopButton(false);
-            }
-        };
-        window.addEventListener('scroll', handleScroll);
-    
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
-    
-    const handleScrollTopButtonClick = () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    };
-
     return (
         <>
             <Container>
@@ -234,18 +213,6 @@ const MainPage: React.FC = () => {
                         </div>
                     </div>
                 </section>
-                
-                {showScrollTopButton && (
-                    <ScrollTopButton
-                        id="scroll-top-btn"
-                        className="btn scroll"
-                        title="위로 올라가기"
-                        onClick={handleScrollTopButtonClick} 
-                    >
-                        <span className="blind">위로 올라가기</span>
-                        <i className="fa-solid fa-circle-up"></i>
-                    </ScrollTopButton>
-                )}
             </Container>
         </>
     );
@@ -460,28 +427,5 @@ const sectionTwo = css`
         margin-bottom: 20px;
     }
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-`;
-
-
-// scroll
-const ScrollTopButton = styled.button`
-    position: fixed;
-    right: 20px;
-    bottom: 50px;
-    width: 35px;
-    height: 35px;
-    font-size: 35px;
-    border: none;
-    border-radius: 50%;
-    transition: opacity 0.3s, visibility 0.3s;
-    background: none;
-    z-index: 101;
-    cursor: pointer;
-    color: #7F5539;
-    i {
-        position: fixed;
-        right: 20px;
-        bottom: 50px;
-    }
 `;
 export default MainPage;

@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 
 const MainPage: React.FC = () => {
     const totalSlides = 3;
-    const slideDuration = 5000;
+    const slideDuration = 3000;
     //slide
     const [activeSlide, setActiveSlide] = useState(0);
     //scroll

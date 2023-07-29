@@ -1,6 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons';
 
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
@@ -10,8 +12,13 @@ import LogoImg from './../../assets/logo.png';
 
 // headerMainBar
 function Header() {
+  const [isDarkMode, setDarkMode] = useState(false);
   const [isPopupOpen, setPopupOpen] = useState(false);
   const bellPopupRef = useRef<HTMLDivElement | null>(null);
+
+  const handleToggleDarkMode = () => {
+    setDarkMode((prevMode) => !prevMode);
+  };
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -45,6 +52,12 @@ function Header() {
         </Logo>
         <IconSection className="icon-section">
           <IconList className="icon-list">
+            <ThemeLi isDarkMode={isDarkMode}>
+              <span className="blind">다크 라이트 스위치</span>
+              <ThemeBtn className="btn theme" onClick={handleToggleDarkMode} isDarkMode={isDarkMode}>
+                <FontAwesomeIcon icon={isDarkMode ? faSun : faMoon} />
+              </ThemeBtn>
+            </ThemeLi>
             <li>
               <span className="blind">알림창</span>
               <BellBtn className="btn bell" onClick={handleOpenPopup}>
@@ -266,6 +279,31 @@ const MenuBtn = styled.button`
   background: none;
   border: 0;
   width: 70px;
+`;
+
+//dark mode
+const ThemeLi = styled.li<{ isDarkMode: boolean }>`  
+  position: relative;
+  width: 50px;
+  margin-right: 10px;
+  border-radius: 20px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  background-color: ${(props) => (props.isDarkMode ? '#fff' : '#181f38')};
+`;
+const ThemeBtn = styled.button<{ isDarkMode: boolean }>`  
+  position: absolute;
+  top:1px;
+  right:5px;
+  text-align: center;
+  padding: 0 5px;
+  border: none;
+  background: none;
+  transition: transform 0.3s ease;
+  
+  /* 다크모드일 때 버튼 위치 */
+  transform: ${(props) => (props.isDarkMode ? 'translateX(-18px)' : 'translateX(3px)')};
+  /* 다크모드일 때 아이콘 색상 변경 */
+  color: ${(props) => (props.isDarkMode ? '#ffdd55' : '#ffdd55')};
 `;
 
 export default Header;

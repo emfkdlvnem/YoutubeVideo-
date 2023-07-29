@@ -64,3 +64,14 @@ a {
   margin: -1px;
   overflow: hidden;
 }
+
+
+
+.divSection {
+  position: relative;
+  border-radius: 10px;
+  background-color: rgb(243, 218, 209);
+  transform: translateX(-50%);
+  position: absolute;
+  text-align: center;
+}

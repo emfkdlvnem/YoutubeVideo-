@@ -2,14 +2,29 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 
+// import AlertList from 'AlertList'
 import LogoImg from './../../assets/logo.png';
 
 // headerMainBar
 function Header() {
   const [isPopupOpen, setPopupOpen] = useState(false);
+  const bellPopupRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (bellPopupRef.current && !bellPopupRef.current.contains(event.target as Node)) {
+        setPopupOpen(false);
+      }
+    };
+  
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isPopupOpen, bellPopupRef]);
 
   const handleOpenPopup = () => {
     setPopupOpen(true);
@@ -28,8 +43,8 @@ function Header() {
             <img src={LogoImg} alt="logo" css={imgLogo} />
           </Link>
         </Logo>
-        <div className="icon-section">
-          <ul css={iconList}>
+        <IconSection className="icon-section">
+          <IconList className="icon-list">
             <li>
               <span className="blind">알림창</span>
               <BellBtn className="btn bell" onClick={handleOpenPopup}>
@@ -48,9 +63,9 @@ function Header() {
                 <i className="fas fa-bookmark"></i>
               </LikeBtn>
             </li>
-          </ul>
+          </IconList>
           {isPopupOpen && (
-            <BellPop className="popup">
+            <BellPop className="popup" ref={bellPopupRef}>
               <h3 className="pop-bell-title">알림창</h3>
               <p>
                 Lorem ipsum dolor, sit amet consectetur adipisicing elit.
@@ -62,7 +77,12 @@ function Header() {
               </button>
             </BellPop>
           )}
-        </div>
+          {/* {isPopupOpen && (
+            <BellPop className="popup">
+              <AlertList />
+            </BellPop>
+          )} */}
+        </IconSection>
         <div className="login-section" css={loginSection}>
           <LoginLink
             to="/login"
@@ -103,6 +123,8 @@ function Header() {
   );
 }
 
+// emotion css style
+
 // headerInn
 const headerInn = css`
   position: fixed;
@@ -130,12 +152,21 @@ const Logo = styled.h1`
 const imgLogo = css`
   width: 250px;
 `;
-const iconList = css`
+
+const IconSection = styled.div`
+  position: relative;
+`;
+const IconList = styled.ul`
   display: flex;
   justify-content: space-between;
+
+  li {
+    padding: 0 5px
+  }
 `;
 const BellBtn = styled.button`
   border: none;
+  background: none;
 `;
 const DmBtn = styled(Link)``;
 const LikeBtn = styled(Link)``;
@@ -144,19 +175,56 @@ const loginSection = css`
   display: flex;
   justify-content: space-between;
   text-align: center;
+  margin-left: 10px;
+
+  span {
+    display: inline-block;
+    margin: 0 5px
+  }
 `;
 const LoginLink = styled(Link)`
   display: block;
-  width: 70px;
 `;
 const SignInLink = styled(Link)`
   display: block;
-  width: 70px;
 `;
 
 // bellBtn 클릭 시 팝업
 const BellPop = styled.div`
   position: absolute;
+  right: 10px;
+  top: 40px;
+  width: 300px;
+  height: 500px;
+  padding: 15px;
+  border-radius: 10px;
+  background-color: rgb(243, 218, 209);
+  z-index: 5;
+
+  &::before {
+    position: absolute;
+    left: 85%;
+    top: -10px;
+    transform: translateX(-85%);
+    content: '';
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid rgb(243, 218, 209);
+    background-color: red;
+  }
+
+  button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 30px;
+    height: 30px;
+    font-size: 20px;
+    border: none;
+    background: none;    
+  }
 `;
 
 // headerMainBar

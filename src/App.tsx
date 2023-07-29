@@ -6,8 +6,6 @@ import Footer from './components/common/Footer';
 import MainPage from './pages//MainPage';
 import ExerciseInfo from './pages/ExerciseInfo/ExerciseInfo';
 
-
-
 import "./index.css";
 
 function App() {
@@ -15,16 +13,16 @@ function App() {
 		<BrowserRouter>
 			<Header />
 				<Routes>
-						<Route path='/' />
+						<Route path='/' element={<MainPage />} />
 						<Route path="/header" element={<Header />} />
 						<Route path='/footer' element={<Footer />} />
-						<Route path='/mainPage' element={<MainPage />} />
 						<Route path='/exerciseInfo' element={<ExerciseInfo />} />
+						
+						{/* 메인페이지 슬라이드에 따른 페이지 이동 */}
+						<Route path='/exerciseInfo/:slideNumber' element={<ExerciseInfo />} />
 				</Routes>
-			<MainPage />
 			<Footer />
 		</BrowserRouter>
 	);
 }
-
 export default App;

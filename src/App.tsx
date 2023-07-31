@@ -5,7 +5,8 @@ import Header from './components/common/Header';
 import Footer from './components/common/Footer';
 
 import MainPage from './pages//MainPage';
-import ExerciseInfo from './pages/ExerciseInfo/ExerciseInfo';
+import ExerciseInfo from './pages/ExerciseInfo';
+import FineMate from './pages/FineMate';
 
 import ScrollTopButton from './components/common/ScrollTopButton'; 
 
@@ -23,6 +24,7 @@ function App() {
 							<Route path="/header" element={<Header />} />
 							<Route path='/footer' element={<Footer />} />
 							<Route path='/exerciseInfo' element={<ExerciseInfo />} />
+							<Route path='/fineMate' element={<FineMate />} />
 					</Routes>
 				<Footer />
 				<ScrollTopButton />

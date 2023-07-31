@@ -1,5 +1,5 @@
 import React from 'react';
-import VideoList from '../../components/ExerciseInfo/VideoList';
+import VideoList from '../components/ExerciseInfo/VideoList';
 
 const ExerciseInfo: React.FC = () => {
     return (

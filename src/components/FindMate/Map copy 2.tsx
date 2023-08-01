@@ -3,7 +3,7 @@
 import styled from '@emotion/styled';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { fetchUsers, User } from './KakaoMapApi';
 
 declare const kakao: any;
@@ -11,16 +11,17 @@ declare const kakao: any;
 interface UserInfoPopupProps {
     open: boolean;
 }
-
 const Map: React.FC = () => {
     const [category, setCategory] = useState('러닝');
     const [selectedUser, setSelectedUser] = useState<User | null>(null);
     const [markers, setMarkers] = useState<kakao.maps.Marker[]>([]);
+    const [isPopupOpen, setPopupOpen] = useState<boolean>(false);
+    const mapContainer = useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {
         const loadKakaoMapScript = () => {
             const script = document.createElement('script');
-            script.src = '//dapi.kakao.com/v2/maps/sdk.js?appkey=a74b8e2521c55444d91bae5a259406fd'; 
+            script.src = '//dapi.kakao.com/v2/maps/sdk.js?appkey=ee5f634503306d250300857b899299a0'; 
             script.onload = initializeMap;
             document.head.appendChild(script);
         };
@@ -43,31 +44,43 @@ const Map: React.FC = () => {
             });
 
             fetchUsers(category)
-                .then(users => {
-                    const newMarkers: kakao.maps.Marker[] = [];
-                    users.forEach(user => {
-                        const markerPosition = new kakao.maps.LatLng(user.location.lat, user.location.lng);
-                        const marker = new kakao.maps.Marker({
-                            position: markerPosition
-                        });
-                        marker.setMap(map);
-                        newMarkers.push(marker); 
-                        kakao.maps.event.addListener(marker, 'click', function() {
-                            setSelectedUser(user);
-                        });
+            .then(users => {
+                const newMarkers: kakao.maps.Marker[] = [];
+                users.forEach(user => {
+                    const markerPosition = new kakao.maps.LatLng(user.lat, user.lng);
+                    const marker = new kakao.maps.Marker({ 
+                        position: markerPosition,
+                        map: map 
                     });
-
-                    setMarkers(newMarkers); 
+                
+                    newMarkers.push(marker);
+                    
+                    kakao.maps.event.addListener(marker, 'click', function() {
+                        setSelectedUser(user);
+                        setPopupOpen(true); 
+                        if (mapContainer.current) {
+                            mapContainer.current.style.width = "75%";
+                        }
+                    });
                 });
+            
+                setMarkers(newMarkers); 
+            });
         };
 
         loadKakaoMapScript();
     }, [category, markers]); 
 
+    const handleMapClick = () => {
+        setSelectedUser(null);
+        setPopupOpen(false);  
+        if (mapContainer.current) {
+            mapContainer.current.style.width = "100%";
+        }
+    }
     const handleTabClick = (newCategory: string) => {
         setCategory(newCategory);
     }
-
 
     return (
         <MapInn>
@@ -92,9 +105,9 @@ const Map: React.FC = () => {
                     헬스
                 </button>
             </BtnTab>
-            <MapSection>
-                <MapContainer id="map"></MapContainer>
-                <UserInfoPopup open={!!selectedUser}>
+            <MapSection onClick={handleMapClick}>
+                <MapContainer id="map" ref={mapContainer}></MapContainer>
+                <UserInfoPopup open={isPopupOpen}>
                     {selectedUser && (
                         <>
                             <p>{selectedUser.name}</p>

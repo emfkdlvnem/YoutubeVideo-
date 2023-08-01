@@ -1,12 +1,8 @@
 import React from 'react';
-import Map from '../components/FindMate/Map';
+import KakaoMapScriptLoader from '../components/FindMate/KakaoMapScriptLoader';
 
 const FineMate: React.FC = () => {
-    return (
-        <>
-            <Map />
-        </>
-    );
+    return <KakaoMapScriptLoader />
 };
 
 export default FineMate;

@@ -7,9 +7,12 @@ export interface LatLng {
 }
 
 export interface User {
+    location: LatLng;
+    id: number;
     name: string;
     category: string;
-    location: LatLng;
+    lat: number;
+    lng: number;
 }
     
 export const fetchUsers = async (category: string): Promise<User[]> => {

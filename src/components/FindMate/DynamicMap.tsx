@@ -93,7 +93,7 @@ const MapContainer = styled.div`
 const BtnTab = styled.div`
     position: relative;
     top: 30px;
-    z-index: 2;
+    z-index: 10;
     button {
         position: absolute;
         left: 50%;
@@ -122,8 +122,8 @@ const MapBox = styled.div`
     top: 130px;
     left: 50%;
     transform: translateX(-50%);
-    width: 90%;
-    height: 80%;
+    width: 70%;
+    height: 70%;
     border-radius: 10px;
 `;
 export default DynamicMap;

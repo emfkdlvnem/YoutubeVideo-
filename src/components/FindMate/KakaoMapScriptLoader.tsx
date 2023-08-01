@@ -62,7 +62,7 @@ const MapInn = styled.div`
 `;
 const PageTitle = styled.h2`
     position: relative;
-    z-index: 2;
+    z-index: 1;
     &::before {
         content: '';
         position: absolute;

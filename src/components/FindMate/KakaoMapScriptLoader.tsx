@@ -48,13 +48,14 @@ const MapInn = styled.div`
     position: relative;
     max-width: 1440px;
     min-height: 100vh;
-    margin: 120px auto 0;
+    margin: 0px auto 0;
     padding: 20px 60px;
     box-sizing: border-box;
     background-color: #f8f8f8;
 `;
 const PageTitle = styled.h2`
     position: relative;
+    top: 30px;
     z-index: 1;
     &::before {
         content: '';

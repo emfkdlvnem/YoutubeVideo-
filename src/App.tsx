@@ -36,7 +36,7 @@ function App() {
                     {/* <Route path="/signin" element={<SignIn />} />
                     <Route path="/signup" element={<SignUp />} />
                     <Route path="/messenger" element={<Messenger />} />
-                    <Route path="/bookmark" element={<Bookmark />} />  */}
+                    <Route path="/bookmark" element={<Bookmark />} /> */}
                     <Route path="/exerciseInfo" element={<ExerciseInfo />} />
                     <Route path="/findmate" element={<FindMate />} />
                     {/* <Route path="/community" element={<Community />} />

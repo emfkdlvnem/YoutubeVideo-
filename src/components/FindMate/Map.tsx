@@ -1,5 +1,3 @@
-import axios from 'axios';
-
 import styled from '@emotion/styled';
 import { useEffect, useRef, useState } from 'react';
 import UserProfile from './UserProfile';
@@ -14,7 +12,7 @@ interface MapProps {
     category: string;
 }
 
-const Map: React.FC<MapProps> = (props: MapProps) => {
+const Map = (props: MapProps) => {
     //tab click
     const [category, setCategory] = useState<string>(props.category || '러닝');
     // map
@@ -29,19 +27,10 @@ const Map: React.FC<MapProps> = (props: MapProps) => {
         setSelectedUser(null);
     };
 
-    // Get 요청 보냄 Read
-    // useEffect(() => {
-    //     fetch('http://localhost:3000/users')
-    //         .then((response) => response.json())
-    //         .then((data: User[]) => setUsers(data))
-    //         .catch((error) => {
-    //             console.error('Error fetching users:', error);
-    //         });
-    // }, []);
     useEffect(() => {
-        axios
-            .get('http://localhost:3000/users')
-            .then((response) => setUsers(response.data))
+        fetch('http://localhost:3000/users')
+            .then((response) => response.json())
+            .then((data: User[]) => setUsers(data))
             .catch((error) => {
                 console.error('Error fetching users:', error);
             });
@@ -129,7 +118,7 @@ const MapContainer = styled.div<{ isSidebarOpen: boolean }>`
 
 const BtnTab = styled.div`
     position: relative;
-    top: 60px;
+    top: 30px;
     z-index: 10;
     button {
         position: absolute;
@@ -156,11 +145,10 @@ const BtnTab = styled.div`
 `;
 const MapBox = styled.div<{ isSidebarOpen: boolean }>`
     position: absolute;
-    top: 160px;
+    top: 130px;
     // left: 50%;
     // transform: translateX(-50%);
-    width: 70%;
-    // width: ${(props) => (props.isSidebarOpen ? '50%' : '70%')};
+    width: ${(props) => (props.isSidebarOpen ? '50%' : '70%')};
     height: 70%;
     border-radius: 10px;
     transition: all 0.3s;
@@ -172,8 +160,10 @@ const MapBox = styled.div<{ isSidebarOpen: boolean }>`
 //프로필
 const UserProfileWrapper = styled.div`
     position: absolute;
-    right: 70px;
-    top: 250px;
+    right: 0;
+    width: 30%;
+    height: 100%;
+    background-color: white;
 `;
 
 export default Map;

@@ -25,24 +25,30 @@ export type VideosResponse = {
     items: Video[];
 };
 
-export const YOUTUBE_API_KEY = "AIzaSyCiNRWlBZEQLTiZczKSieY7BS8lOLAA3_8";
+export const YOUTUBE_API_KEY = 'AIzaSyCiNRWlBZEQLTiZczKSieY7BS8lOLAA3_8';
 
 let totalResults = 0;
-export const fetchVideos = async (pageToken: string | null, category: string): Promise<VideosResponse> => {
+export const fetchVideos = async (
+    pageToken: string | null,
+    category: string
+): Promise<VideosResponse> => {
     if (totalResults >= 20) {
-        return { nextPageToken: null, items: [] }; 
+        return { nextPageToken: null, items: [] };
     }
-    
+
     try {
-        const response = await axios.get<VideosResponse>('https://www.googleapis.com/youtube/v3/search', {
-            params: {
-                part: 'snippet',
-                maxResults: 4,
-                key: YOUTUBE_API_KEY,
-                q: category,
-                pageToken,
-            },
-        });
+        const response = await axios.get<VideosResponse>(
+            'https://www.googleapis.com/youtube/v3/search',
+            {
+                params: {
+                    part: 'snippet',
+                    maxResults: 4,
+                    key: YOUTUBE_API_KEY,
+                    q: category,
+                    pageToken,
+                },
+            }
+        );
 
         totalResults += response.data.items.length;
 

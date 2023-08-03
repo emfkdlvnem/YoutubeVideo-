@@ -29,15 +29,15 @@ function VideoPopup({ video, onClose }: VideoPopupProps) {
     return (
         <VideoPopupContainer onClick={onClose}>
             {/* <CloseButton onClick={onClose}>닫기</CloseButton> */}
-            <iframe 
-                width="560" 
-                height="315" 
-                src={`https://www.youtube.com/embed/${video.id}`} 
-                title={video.title} 
-                frameBorder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowFullScreen>
-            </iframe>
+            <iframe
+                width="560"
+                height="315"
+                src={`https://www.youtube.com/embed/${video.id}`}
+                title={video.title}
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+            ></iframe>
         </VideoPopupContainer>
     );
 }

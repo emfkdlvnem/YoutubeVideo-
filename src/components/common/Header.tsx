@@ -2,17 +2,29 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons';
-
+import {
+    faSun,
+    faMoon,
+    faUserGroup,
+    faBell,
+    faComment,
+    faBookmark,
+} from '@fortawesome/free-solid-svg-icons';
+import Modal from 'react-modal';
+Modal.setAppElement('#root');
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 
-// import AlertList from 'AlertList'
+import AlertList from './AlertList';
+import MateList from './MateList';
 import LogoImg from './../../assets/logo.png';
 
+interface Props {}
 // headerMainBar
-function Header() {
+const Header: React.FC<Props> = () => {
     const [isDarkMode, setDarkMode] = useState(false);
+    const [isMateListOpen, setIsMateListOpen] = useState(false);
+
     const [isPopupOpen, setPopupOpen] = useState(false);
     const bellPopupRef = useRef<HTMLDivElement | null>(null);
 
@@ -49,8 +61,16 @@ function Header() {
         setPopupOpen(true);
     };
 
-    const handleClosePopup = () => {
-        setPopupOpen(false);
+    // const handleClosePopup = () => {
+    //     setPopupOpen(false);
+    // };
+
+    //운동메이트 리스트
+    const handleShowMateListClick = () => {
+        setIsMateListOpen(true);
+    };
+    const handleCloseMateList = () => {
+        setIsMateListOpen(false);
     };
 
     return (
@@ -75,27 +95,36 @@ function Header() {
                             </ThemeBtn>
                         </ThemeLi>
                         <li>
+                            <MateBtn onClick={handleShowMateListClick}>
+                                <span className="blind">운동 메이트 리스트</span>
+                                <FontAwesomeIcon icon={faUserGroup} />
+                            </MateBtn>
+                            {isMateListOpen && (
+                                <MateList isOpen={true} onClose={handleCloseMateList} />
+                            )}
+                        </li>
+                        <li>
                             <span className="blind">알림창</span>
                             <BellBtn className="btn bell" onClick={handleOpenPopup}>
-                                <i className="fas fa-bell"></i>
+                                <FontAwesomeIcon icon={faBell} />
                             </BellBtn>
                         </li>
                         <li>
                             <span className="blind">DM</span>
                             <DmBtn to="/messenger" className="btn dm">
-                                <i className="fas fa-comment"></i>
+                                <FontAwesomeIcon icon={faComment} />
                             </DmBtn>
                         </li>
                         <li>
                             <span className="blind">즐겨찾기</span>
                             <LikeBtn to="/bookmark" className="btn like-page">
-                                <i className="fas fa-bookmark"></i>
+                                <FontAwesomeIcon icon={faBookmark} />
                             </LikeBtn>
                         </li>
                     </IconList>
                     {isPopupOpen && (
                         <BellPop className="popup" ref={bellPopupRef}>
-                            <h3 className="pop-bell-title">알림창</h3>
+                            {/* <h3 className="pop-bell-title">알림창</h3>
                             <p>
                                 Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quaerat,
                                 accusantium.
@@ -103,14 +132,10 @@ function Header() {
                             <button onClick={handleClosePopup}>
                                 <span className="blind">닫기</span>
                                 <i className="fas fa-times"></i>
-                            </button>
+                            </button> */}
+                            <AlertList />
                         </BellPop>
                     )}
-                    {/* {isPopupOpen && (
-            <BellPop className="popup">
-              <AlertList />
-            </BellPop>
-          )} */}
                 </IconSection>
                 <div className="signin-section" css={signinSection}>
                     <SignInLink to="/signin" id="header-btn-signin" className="btn btn-signin-link">
@@ -142,7 +167,7 @@ function Header() {
                                 <span>운동 메이트 찾기</span>
                             </Link>
                         </li>
-                        {/* <li css={menuLi}>
+                        <li css={menuLi}>
                             <Link to="/community">
                                 <span>커뮤니티</span>
                             </Link>
@@ -151,19 +176,22 @@ function Header() {
                             <Link to="/mypage">
                                 <span>마이 페이지</span>
                             </Link>
-                        </li> */}
+                        </li>
                     </ul>
                 </nav>
             </div>
         </div>
     );
-}
+};
 
 // emotion css style
 
 // headerInn
 const headerInn = css`
-    position: relative;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
     max-width: 1440px;
     height: 110px;
     margin: 0 auto;
@@ -200,6 +228,10 @@ const IconList = styled.ul`
         padding: 0 5px;
     }
 `;
+const MateBtn = styled.button`
+    border: none;
+    background: none;
+`;
 const BellBtn = styled.button`
     border: none;
     background: none;
@@ -230,37 +262,36 @@ const BellPop = styled.div`
     position: absolute;
     right: 10px;
     top: 40px;
-    width: 300px;
-    height: 500px;
-    padding: 15px;
-    border-radius: 10px;
-    background-color: rgb(243, 218, 209);
-    z-index: 5;
 
-    &::before {
-        position: absolute;
-        left: 85%;
-        top: -10px;
-        transform: translateX(-85%);
-        content: '';
-        width: 0;
-        height: 0;
-        border-left: 10px solid transparent;
-        border-right: 10px solid transparent;
-        border-bottom: 10px solid rgb(243, 218, 209);
-        background-color: red;
-    }
+    // width: 300px;
+    // height: 500px;
+    // padding: 15px;
+    // border-radius: 10px;
+    // background-color: rgb(243, 218, 209);
+    // z-index: 5;
 
-    button {
-        position: absolute;
-        top: 0;
-        right: 0;
-        width: 30px;
-        height: 30px;
-        font-size: 20px;
-        border: none;
-        background: none;
-    }
+    // &::before {
+    //     position: absolute;
+    //     left: 85%;
+    //     top: -10px;
+    //     transform: translateX(-85%);
+    //     content: '';
+    //     width: 0;
+    //     height: 0;
+    //     border-left: 10px solid transparent;
+    //     border-right: 10px solid transparent;
+    //     border-bottom: 10px solid rgb(243, 218, 209);
+    //     background-color: red;
+    // }
+
+    // button {
+    //     position: absolute;
+    //     top: 0;
+    //     right: 0;
+    //     width: 30px;
+    //     height: 30px;
+    //     font-size: 20px;
+    // }
 `;
 
 // headerMainBar

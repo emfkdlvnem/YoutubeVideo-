@@ -1,11 +1,7 @@
 import React from 'react';
 
 const UserIcon: React.FC = () => {
-    return (
-        <>
-            
-        </>
-    );
+    return <></>;
 };
 
 export default UserIcon;

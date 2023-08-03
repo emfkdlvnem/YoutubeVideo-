@@ -1,61 +1,54 @@
 import styled from '@emotion/styled';
-import { useState, useEffect } from "react"
+import { useState, useEffect } from 'react';
 
-import DynamicMap from '../FindMate/DynamicMap';
+import Map from './Map';
 
 // KakaoMapScriptLoader.ts
-const KAKAO_MAP_SCRIPT_ID = 'kakao-map-script'
+const KAKAO_MAP_SCRIPT_ID = 'kakao-map-script';
 const APP_KAKAO_MAP_API_KEY = import.meta.env.VITE_APP_KAKAO_MAP_API_KEY;
 
 const KakaoMapScriptLoader: React.FC = () => {
-
     const [mapScriptLoaded, setmapScriptLoaded] = useState(false);
 
     useEffect(() => {
-        const mapScript = document.getElementById(KAKAO_MAP_SCRIPT_ID)
-        
-        if(mapScript && !window.kakao) {
-            return
+        const mapScript = document.getElementById(KAKAO_MAP_SCRIPT_ID);
+
+        if (mapScript && !window.kakao) {
+            return;
         }
 
         // script
         const script = document.createElement('script');
-        script.id = KAKAO_MAP_SCRIPT_ID
-        script.src = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=${APP_KAKAO_MAP_API_KEY}&libraries=services&autoload=false`
+        script.id = KAKAO_MAP_SCRIPT_ID;
+        script.src = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=${APP_KAKAO_MAP_API_KEY}&libraries=services&autoload=false`;
 
         script.onload = () => {
             window.kakao.maps.load(() => {
                 // TODO: 성공
-                setmapScriptLoaded(true)
-            })
-        }
+                setmapScriptLoaded(true);
+            });
+        };
         script.onerror = () => {
             // TODO: 실패
-            setmapScriptLoaded(false)
-        }
-        document.getElementById('root')?.appendChild(script)
-    }, [])
+            setmapScriptLoaded(false);
+        };
+        document.getElementById('root')?.appendChild(script);
+    }, []);
 
     return (
         <MapInn>
             <PageTitle>운동 메이트 찾기</PageTitle>
             <MapLoad>
-                {
-                    mapScriptLoaded ? <DynamicMap category="러닝" /> : (
-                        <div>
-                        지도를 가져오는 중입니다.
-                    </div>
-                    )
-                }
+                {mapScriptLoaded ? <Map category="러닝" /> : <div>지도를 가져오는 중입니다.</div>}
             </MapLoad>
         </MapInn>
-    )
-}
+    );
+};
 const MapInn = styled.div`
     position: relative;
     max-width: 1440px;
     min-height: 100vh;
-    margin: 110px auto 0;
+    margin: 120px auto 0;
     padding: 20px 60px;
     box-sizing: border-box;
     background-color: #f8f8f8;
@@ -81,7 +74,7 @@ const MapLoad = styled.div`
     top: 50px;
     left: 50%;
     transform: translateX(-50%);
-    width:100%;
+    width: 100%;
     height: 100%;
 `;
 export default KakaoMapScriptLoader;

@@ -57,7 +57,7 @@ const UserProfile: React.FC<UserProfileProps> = ({ user, onClose }) => {
     );
 };
 const UserProfileContainer = styled.div`
-    position: relative;
+    position: absolute;
 `;
 const ProfileBox = styled.div`
     width: 250px;

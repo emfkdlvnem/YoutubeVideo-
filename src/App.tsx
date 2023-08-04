@@ -6,19 +6,19 @@ import Footer from './components/common/Footer';
 import MainPage from './pages/MainPage';
 
 // 상단 우측 아이콘
-// import SignIn from './pages/SignIn';
-// import SignUp from './pages/SignUp';
-// import Messenger from './pages/Messenger';
-// import Bookmark from './pages/Bookmark';
+import SignIn from './pages/SignIn';
+import SignUp from './pages/SignUp';
+import Messenger from './pages/Messenger';
+import Bookmark from './pages/Bookmark';
 
 //하단 4개 카테고리 해당페이지
 import ExerciseInfo from './pages/ExerciseInfo';
 import FindMate from './pages/FindMate';
-// import Community from './pages/Community';
-// import Post from './pages/Post';
-// import CreatePost from './pages/CreatePost';
-// import MyPage from './pages/MyPage';
-// import MyVideos from './pages/MyVideos';
+import Community from './pages/Community';
+import Post from './pages/Post';
+import CreatePost from './pages/CreatePost';
+import MyPage from './pages/MyPage';
+import MyVideos from './pages/MyVideos';
 
 import ScrollTopButton from './components/common/ScrollTopButton';
 
@@ -33,17 +33,17 @@ function App() {
                 <Header />
                 <Routes>
                     <Route path="/" element={<MainPage />} />
-                    {/* <Route path="/signin" element={<SignIn />} />
+                    <Route path="/signin" element={<SignIn />} />
                     <Route path="/signup" element={<SignUp />} />
                     <Route path="/messenger" element={<Messenger />} />
-                    <Route path="/bookmark" element={<Bookmark />} /> */}
+                    <Route path="/bookmark" element={<Bookmark />} />
                     <Route path="/exerciseInfo" element={<ExerciseInfo />} />
                     <Route path="/findmate" element={<FindMate />} />
-                    {/* <Route path="/community" element={<Community />} />
+                    <Route path="/community" element={<Community />} />
                     <Route path="/community/post" element={<Post />} />
                     <Route path="/community/createpost" element={<CreatePost />} />
                     <Route path="/mypage" element={<MyPage />} />
-                    <Route path="/mypage/myvideos" element={<MyVideos />} /> */}
+                    <Route path="/mypage/myvideos" element={<MyVideos />} />
                 </Routes>
                 <Footer />
                 <ScrollTopButton />
@@ -51,5 +51,4 @@ function App() {
         </QueryClientProvider>
     );
 }
-
 export default App;

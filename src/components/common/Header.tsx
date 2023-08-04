@@ -74,129 +74,128 @@ const Header: React.FC<Props> = () => {
     };
 
     return (
-        <div className="header-inn" css={[headerInn, isScrolled && scrolledHeader]}>
-            <div className="top-bar" css={topBar}>
-                <Logo className="logo">
-                    <Link to="/">
-                        <span className="blind">FitTogether</span>
-                        <img src={LogoImg} alt="logo" css={imgLogo} />
-                    </Link>
-                </Logo>
-                <IconSection className="icon-section">
-                    <IconList className="icon-list">
-                        <ThemeLi isDarkMode={isDarkMode}>
-                            <span className="blind">다크 라이트 스위치</span>
-                            <ThemeBtn
-                                className="btn theme"
-                                onClick={handleToggleDarkMode}
-                                isDarkMode={isDarkMode}
-                            >
-                                <FontAwesomeIcon icon={isDarkMode ? faSun : faMoon} />
-                            </ThemeBtn>
-                        </ThemeLi>
-                        <li>
-                            <MateBtn onClick={handleShowMateListClick}>
-                                <span className="blind">운동 메이트 리스트</span>
-                                <FontAwesomeIcon icon={faUserGroup} />
-                            </MateBtn>
-                            {isMateListOpen && (
-                                <MateList isOpen={true} onClose={handleCloseMateList} />
-                            )}
-                        </li>
-                        <li>
-                            <span className="blind">알림창</span>
-                            <BellBtn className="btn bell" onClick={handleOpenPopup}>
-                                <FontAwesomeIcon icon={faBell} />
-                            </BellBtn>
-                        </li>
-                        <li>
-                            <span className="blind">DM</span>
-                            <DmBtn to="/messenger" className="btn dm">
-                                <FontAwesomeIcon icon={faComment} />
-                            </DmBtn>
-                        </li>
-                        <li>
-                            <span className="blind">즐겨찾기</span>
-                            <LikeBtn to="/bookmark" className="btn like-page">
-                                <FontAwesomeIcon icon={faBookmark} />
-                            </LikeBtn>
-                        </li>
-                    </IconList>
-                    {isPopupOpen && (
-                        <BellPop className="popup" ref={bellPopupRef}>
-                            {/* <h3 className="pop-bell-title">알림창</h3>
-                            <p>
-                                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quaerat,
-                                accusantium.
-                            </p>
-                            <button onClick={handleClosePopup}>
-                                <span className="blind">닫기</span>
-                                <i className="fas fa-times"></i>
-                            </button> */}
-                            <AlertList />
-                        </BellPop>
-                    )}
-                </IconSection>
-                <div className="signin-section" css={signinSection}>
-                    <SignInLink to="/signin" id="header-btn-signin" className="btn btn-signin-link">
-                        로그인
-                    </SignInLink>
-                    <span>|</span>
-                    <SignUpLink to="/signup" id="header-btn-signup" className="btn btn-signup-link">
-                        회원가입
-                    </SignUpLink>
+        <HeaderWrap css={[isScrolled && scrolledHeader]}>
+            <div css={headerInn}>
+                <div css={topBar}>
+                    <Logo>
+                        <Link to="/">
+                            <span className="blind">FitTogether</span>
+                            <img src={LogoImg} alt="logo" css={imgLogo} />
+                        </Link>
+                    </Logo>
+                    <IconSection>
+                        <IconList>
+                            <ThemeLi isDarkMode={isDarkMode}>
+                                <span className="blind">다크 라이트 스위치</span>
+                                <ThemeBtn onClick={handleToggleDarkMode} isDarkMode={isDarkMode}>
+                                    <FontAwesomeIcon icon={isDarkMode ? faSun : faMoon} />
+                                </ThemeBtn>
+                            </ThemeLi>
+                            <li>
+                                <MateBtn onClick={handleShowMateListClick}>
+                                    <span className="blind">운동 메이트 리스트</span>
+                                    <FontAwesomeIcon icon={faUserGroup} />
+                                </MateBtn>
+                                {isMateListOpen && (
+                                    <MateList isOpen={true} onClose={handleCloseMateList} />
+                                )}
+                            </li>
+                            <li>
+                                <span className="blind">알림창</span>
+                                <BellBtn onClick={handleOpenPopup}>
+                                    <FontAwesomeIcon icon={faBell} />
+                                </BellBtn>
+                            </li>
+                            <li>
+                                <span className="blind">DM</span>
+                                <DmBtn to="/messenger">
+                                    <FontAwesomeIcon icon={faComment} />
+                                </DmBtn>
+                            </li>
+                            <li>
+                                <span className="blind">즐겨찾기</span>
+                                <LikeBtn to="/bookmark">
+                                    <FontAwesomeIcon icon={faBookmark} />
+                                </LikeBtn>
+                            </li>
+                        </IconList>
+                        {isPopupOpen && (
+                            <BellPop ref={bellPopupRef}>
+                                <AlertList />
+                            </BellPop>
+                        )}
+                    </IconSection>
+                    <div className="signin-section" css={signinSection}>
+                        <SignInLink
+                            to="/signin"
+                            id="header-btn-signin"
+                            className="btn btn-signin-link"
+                        >
+                            로그인
+                        </SignInLink>
+                        <span>|</span>
+                        <SignUpLink
+                            to="/signup"
+                            id="header-btn-signup"
+                            className="btn btn-signup-link"
+                        >
+                            회원가입
+                        </SignUpLink>
+                    </div>
+                </div>
+
+                <div css={headerMainBar}>
+                    <nav className="nav">
+                        <MenuBtn type="button" className="btn btn-menu">
+                            <strong className="blind">메뉴 오픈</strong>
+                            <span className="open">
+                                <i className="fa-solid fa-bars"></i>
+                            </span>
+                        </MenuBtn>
+                        <ul css={Menu}>
+                            <li css={menuLi}>
+                                <Link to="/exerciseInfo">
+                                    <span>운동 정보</span>
+                                </Link>
+                            </li>
+                            <li css={menuLi}>
+                                <Link to="/findMate">
+                                    <span>운동 메이트 찾기</span>
+                                </Link>
+                            </li>
+                            {/* <li css={menuLi}>
+                                <Link to="/community">
+                                    <span>커뮤니티</span>
+                                </Link>
+                            </li>
+                             */}
+                            <li css={menuLi}>
+                                <Link to="/mypage">
+                                    <span>마이 페이지</span>
+                                </Link>
+                            </li>
+                        </ul>
+                    </nav>
                 </div>
             </div>
-
-            <div className="header-main-bar" css={headerMainBar}>
-                <nav className="nav">
-                    <MenuBtn type="button" className="btn btn-menu">
-                        <strong className="blind">메뉴 오픈</strong>
-                        <span className="open">
-                            <i className="fa-solid fa-bars"></i>
-                        </span>
-                    </MenuBtn>
-                    <ul className="menu" css={Menu}>
-                        <li css={menuLi}>
-                            <Link to="/exerciseInfo">
-                                <span>운동 정보</span>
-                            </Link>
-                        </li>
-                        <li css={menuLi}>
-                            <Link to="/findMate">
-                                <span>운동 메이트 찾기</span>
-                            </Link>
-                        </li>
-                        <li css={menuLi}>
-                            <Link to="/community">
-                                <span>커뮤니티</span>
-                            </Link>
-                        </li>
-                        <li css={menuLi}>
-                            <Link to="/mypage">
-                                <span>마이 페이지</span>
-                            </Link>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
+        </HeaderWrap>
     );
 };
 
 // emotion css style
-
-// headerInn
-const headerInn = css`
+const HeaderWrap = styled.div`
     position: fixed;
     left: 0;
     right: 0;
     top: 0;
+    z-index: 30;
+`;
+// headerInn
+const headerInn = css`
     max-width: 1440px;
     height: 110px;
     margin: 0 auto;
     padding: 10px 60px;
-    z-index: 2;
 `;
 const scrolledHeader = css`
     background-color: #fff;
@@ -262,36 +261,6 @@ const BellPop = styled.div`
     position: absolute;
     right: 10px;
     top: 40px;
-
-    // width: 300px;
-    // height: 500px;
-    // padding: 15px;
-    // border-radius: 10px;
-    // background-color: rgb(243, 218, 209);
-    // z-index: 5;
-
-    // &::before {
-    //     position: absolute;
-    //     left: 85%;
-    //     top: -10px;
-    //     transform: translateX(-85%);
-    //     content: '';
-    //     width: 0;
-    //     height: 0;
-    //     border-left: 10px solid transparent;
-    //     border-right: 10px solid transparent;
-    //     border-bottom: 10px solid rgb(243, 218, 209);
-    //     background-color: red;
-    // }
-
-    // button {
-    //     position: absolute;
-    //     top: 0;
-    //     right: 0;
-    //     width: 30px;
-    //     height: 30px;
-    //     font-size: 20px;
-    // }
 `;
 
 // headerMainBar

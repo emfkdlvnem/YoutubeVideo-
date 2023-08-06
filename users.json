@@ -310,6 +310,20 @@
       "lat": null,
       "long": null,
       "id": 24
+    },
+    {
+      "username": "yoonmongjin",
+      "password": "",
+      "email": "",
+      "address": "서울 서초구 나루터로 15",
+      "profileImage": null,
+      "gender": true,
+      "favoriteSports": [],
+      "introduction": "",
+      "publicStatus": true,
+      "lat": 37.5171300437436,
+      "long": 127.011390388152,
+      "id": 25
     }
   ]
 }

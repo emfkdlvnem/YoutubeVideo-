@@ -1,9 +1,11 @@
 /// <reference types="vite/client" />
-// global.d.ts
 declare global {
-  interface Window {
-    kakao: any;
-  }
+    interface Window {
+        kakao: any;
+    }
+}
+interface ImportMetaEnv {
+    VITE_APP_GEO_CODE_API_KEY: string;
 }
 
 export {};

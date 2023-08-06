@@ -19,9 +19,12 @@ import AlertList from './AlertList';
 import MateList from './MateList';
 import LogoImg from './../../assets/logo.png';
 
-interface Props {}
+// interface Props {}
+type HeaderProps = {
+    onToggleDarkMode: () => void;
+};
 // headerMainBar
-const Header: React.FC<Props> = () => {
+function Header({ onToggleDarkMode }: HeaderProps) {
     const [isDarkMode, setDarkMode] = useState(false);
     const [isMateListOpen, setIsMateListOpen] = useState(false);
 
@@ -33,6 +36,7 @@ const Header: React.FC<Props> = () => {
     // dark light Mode
     const handleToggleDarkMode = () => {
         setDarkMode((prevMode) => !prevMode);
+        onToggleDarkMode();
     };
 
     // 스크롤 내렸을때 배경색 #fff
@@ -180,7 +184,7 @@ const Header: React.FC<Props> = () => {
             </div>
         </HeaderWrap>
     );
-};
+}
 
 // emotion css style
 const HeaderWrap = styled.div`

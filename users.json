@@ -1,0 +1,315 @@
+{
+  "users": [
+    {
+      "nickname": "gg",
+      "email": "ggg@gmail.com",
+      "password": "123123",
+      "gender": "female",
+      "isPublic": false,
+      "id": 1
+    },
+    {
+      "nickname": "abc",
+      "email": "jjj@gmail.com",
+      "password": "123456",
+      "gender": "male",
+      "isPublic": true,
+      "id": 2
+    },
+    {
+      "nickname": "ㅇㅇ",
+      "email": "dddd@gmail.com",
+      "password": "12345678",
+      "gender": "female",
+      "isPublic": false,
+      "id": 3
+    },
+    {
+      "nickname": "test1",
+      "email": "test1@naver.com",
+      "password": "test1",
+      "gender": "male",
+      "isPublic": true,
+      "id": 4
+    },
+    {
+      "username": "test1",
+      "password": "",
+      "email": "qwerty1234@gmail.com",
+      "address": "",
+      "profileImage": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/xwQjbE2ktjrhzKZoD8UaW4ZboCLAe57/AJYzzitdqshYU1AWcDoT/",
+      "gender": true,
+      "favoriteSports": [],
+      "introduction": "",
+      "publicStatus": "",
+      "id": 5
+    },
+    {
+      "username": "test2",
+      "password": "",
+      "email": "qwerty1234@gmail.com",
+      "address": "부산 해운대구 APEC로",
+      "profileImage": null,
+      "gender": true,
+      "favoriteSports": [
+        "러닝",
+        "등산",
+        "헬스"
+      ],
+      "introduction": "운 동 조 아",
+      "publicStatus": true,
+      "id": 6
+    },
+    {
+      "username": "test3",
+      "password": "",
+      "email": "qwerty1234@gmail.com",
+      "address": "제주특별자치도 서귀포시 가가로",
+      "profileImage": null,
+      "gender": true,
+      "favoriteSports": [
+        "러닝",
+        "등산",
+        "헬스",
+        "헬스",
+        "헬스",
+        "헬스",
+        "헬스",
+        "헬스",
+        "등산",
+        "러닝",
+        "헬스",
+        "러닝",
+        "러닝",
+        "러닝",
+        "등산",
+        "헬스",
+        "HIKING"
+      ],
+      "introduction": "같이 한라산 등산하실 여성분!",
+      "publicStatus": true,
+      "id": 7
+    },
+    {
+      "username": "test4",
+      "password": "",
+      "email": "qwerty1234@gmail.com",
+      "address": "제주특별자치도 제주시 가령골길",
+      "profileImage": null,
+      "gender": true,
+      "favoriteSports": [
+        "WEIGHT"
+      ],
+      "introduction": "근손실은 있을수 없음",
+      "publicStatus": true,
+      "id": 8
+    },
+    {
+      "username": "test5",
+      "password": "",
+      "email": "qwerty1234@gmail.com",
+      "address": "광주 광산구 가마길",
+      "profileImage": null,
+      "gender": true,
+      "favoriteSports": [
+        "RUNNING",
+        "WEIGHT"
+      ],
+      "introduction": "체력이 국력",
+      "publicStatus": true,
+      "id": 9
+    },
+    {
+      "username": "test6",
+      "password": "",
+      "email": "qwerty1234@gmail.com",
+      "address": "경기 성남시 분당구 백현동 532",
+      "profileImage": null,
+      "gender": true,
+      "favoriteSports": [
+        "WEIGHT"
+      ],
+      "introduction": "3대 500을 누가 못해? 그 사람이 바로 나예요",
+      "publicStatus": true,
+      "id": 10
+    },
+    {
+      "username": "test1",
+      "password": "",
+      "email": "qwerty1234@gmail.com",
+      "address": "경기 성남시 분당구 돌마로 906",
+      "profileImage": null,
+      "gender": true,
+      "favoriteSports": [],
+      "introduction": "",
+      "publicStatus": true,
+      "id": 11
+    },
+    {
+      "username": "test1",
+      "password": "",
+      "email": "qwerty1234@gmail.com",
+      "address": "경기 성남시 분당구 돌마로 906",
+      "profileImage": null,
+      "gender": true,
+      "favoriteSports": [],
+      "introduction": "",
+      "publicStatus": true,
+      "id": 12
+    },
+    {
+      "username": "test1",
+      "password": "",
+      "email": "qwerty1234@gmail.com",
+      "address": "경기 성남시 분당구 돌마로 906",
+      "profileImage": null,
+      "gender": true,
+      "favoriteSports": [
+        "HIKING"
+      ],
+      "introduction": "",
+      "publicStatus": true,
+      "id": 13
+    },
+    {
+      "username": "test2",
+      "password": "",
+      "email": "qwerty1234@gmail.com",
+      "address": "경기 성남시 분당구 대왕판교로 372",
+      "profileImage": null,
+      "gender": true,
+      "favoriteSports": [],
+      "introduction": "",
+      "publicStatus": true,
+      "id": 14
+    },
+    {
+      "username": "",
+      "password": "",
+      "email": "qwerty1234@gmail.com",
+      "address": "경기 성남시 분당구 내정로 151",
+      "profileImage": null,
+      "gender": true,
+      "favoriteSports": [],
+      "introduction": "",
+      "publicStatus": true,
+      "id": 15
+    },
+    {
+      "username": "",
+      "password": "",
+      "email": "qwerty1234@gmail.com",
+      "address": "경기 성남시 분당구 금곡로 298",
+      "profileImage": null,
+      "gender": true,
+      "favoriteSports": [],
+      "introduction": "",
+      "publicStatus": true,
+      "id": 16
+    },
+    {
+      "username": "",
+      "password": "",
+      "email": "qwerty1234@gmail.com",
+      "address": "경기 성남시 중원구 금빛로 106",
+      "profileImage": null,
+      "gender": true,
+      "favoriteSports": [],
+      "introduction": "",
+      "publicStatus": true,
+      "id": 17
+    },
+    {
+      "username": "",
+      "password": "",
+      "email": "qwerty1234@gmail.com",
+      "address": "경기 성남시 분당구 대왕판교로 372",
+      "profileImage": null,
+      "gender": true,
+      "favoriteSports": [],
+      "introduction": "",
+      "publicStatus": true,
+      "id": 18
+    },
+    {
+      "username": "yoonmongjin",
+      "password": "",
+      "email": "qwerty1234@gmail.com",
+      "address": "부산 강서구 강동송백5길 55",
+      "profileImage": null,
+      "gender": true,
+      "favoriteSports": [],
+      "introduction": "",
+      "publicStatus": true,
+      "id": 19
+    },
+    {
+      "username": "yoonmongjin01",
+      "password": "",
+      "email": "qwerty1234@gmail.com",
+      "address": "부산 강서구 강동송백5길 55",
+      "profileImage": null,
+      "gender": true,
+      "favoriteSports": [],
+      "introduction": "",
+      "publicStatus": true,
+      "id": 20
+    },
+    {
+      "username": "Mango01",
+      "password": "",
+      "email": "qwerty1234@gmail.com",
+      "address": "부산 금정구 수내1길 1",
+      "profileImage": null,
+      "gender": true,
+      "favoriteSports": [],
+      "introduction": "",
+      "publicStatus": true,
+      "latitude": null,
+      "longitude": null,
+      "id": 21
+    },
+    {
+      "username": "yoonmongjin",
+      "password": "",
+      "email": "",
+      "address": "경기 성남시 분당구 돌마로 866",
+      "profileImage": null,
+      "gender": true,
+      "favoriteSports": [],
+      "introduction": "",
+      "publicStatus": true,
+      "lat": null,
+      "long": null,
+      "id": 22
+    },
+    {
+      "username": "yoonmongjin",
+      "password": "",
+      "email": "",
+      "address": "인천 연수구 아암대로 469",
+      "profileImage": null,
+      "gender": true,
+      "favoriteSports": [],
+      "introduction": "",
+      "publicStatus": true,
+      "lat": null,
+      "long": null,
+      "id": 23
+    },
+    {
+      "username": "yoonmongjin",
+      "password": "",
+      "email": "",
+      "address": "대전 동구 판교1길 3",
+      "profileImage": null,
+      "gender": true,
+      "favoriteSports": [],
+      "introduction": "휴...",
+      "publicStatus": true,
+      "lat": null,
+      "long": null,
+      "id": 24
+    }
+  ]
+}

@@ -1,31 +1,20 @@
+// pages/Messenger.tsx
 import React from 'react';
-import ChatApp from '../components/Messenger/ChatApp';
 import styled from '@emotion/styled';
+import ChatApp from '../components/Messenger/ChatApp';
 
 interface Props {}
 
 const Messenger: React.FC<Props> = () => {
     return (
-        <Page>
-            <Component>
-                <ChatApp />
-            </Component>
-        </Page>
+        <MessengerWrapper>
+            <ChatApp />
+        </MessengerWrapper>
     );
 };
 
-const Page = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    // min-height는 삭제 예정
-    min-height: calc(100vh - 300px);
-`;
-
-const Component = styled.div`
-    display: flex;
-    width: 1190 px;
-    border: 1px solid rgba(0, 0, 0, 10%);
+const MessengerWrapper = styled.div`
+    position: relative;
 `;
 
 export default Messenger;

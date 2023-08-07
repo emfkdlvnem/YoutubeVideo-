@@ -1,0 +1,24 @@
+{
+    "chatRooms": [
+        {
+            "id": 1,
+            "name": "박명수",
+            "senderProfileImage": "프로필 이미지 URL",
+            "senderNickname": "박명수",
+            "lastMessageDate": "2023-08-07 15:30",
+            "lastMessageContent": "안녕하세요.",
+            "newMessageCount": 2,
+            "messages": ["안녕하세요.", "오랜만이에요."]
+        },
+        {
+            "id": 2,
+            "name": "강해린",
+            "senderProfileImage": "프로필 이미지 URL",
+            "senderNickname": "강해린",
+            "lastMessageDate": "2023-08-07 12:45",
+            "lastMessageContent": "오늘 저녁에 같이 운동할까요?",
+            "newMessageCount": 1,
+            "messages": ["오늘 저녁에 같이 운동할까요?", "네, 좋아요!"]
+        }
+    ]
+}

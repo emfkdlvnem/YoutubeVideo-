@@ -1,3 +1,4 @@
+// ChatList.tsx
 import React, { useState } from 'react';
 import styled from '@emotion/styled';
 
@@ -5,18 +6,27 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserGroup } from '@fortawesome/free-solid-svg-icons';
 
 import MateList from '../common/MateList';
+import ChatListItem from './ChatListItem';
 
-interface ChatRoom {
-    id: string;
-    name: string;
+interface ChatListProps {
+    chatRooms: string[];
+    onChatRoomClick: (chatRoom: string) => void;
+    data: ChatData;
+    selectedChat: string | null;
 }
 
-interface Props {
-    chatRooms: ChatRoom[];
-    onChatRoomClick: (chatRoomId: string) => void;
+interface ChatData {
+    [key: string]: {
+        senderProfileImage: string;
+        senderNickname: string;
+        lastMessageDate: string;
+        lastMessageContent: string;
+        newMessageCount: number;
+        messages: string[];
+    };
 }
 
-const ChatList: React.FC<Props> = ({ chatRooms, onChatRoomClick }) => {
+const ChatList: React.FC<ChatListProps> = ({ chatRooms, onChatRoomClick, data, selectedChat }) => {
     const [isMateListOpen, setIsMateListOpen] = useState(false);
 
     // 클릭시 운동메이트 리스트 모달창
@@ -28,7 +38,7 @@ const ChatList: React.FC<Props> = ({ chatRooms, onChatRoomClick }) => {
     };
 
     return (
-        <ChatListBox>
+        <MateListBox>
             <TopArea>
                 <MateListTitle>운동 메이트 리스트</MateListTitle>
 
@@ -40,33 +50,42 @@ const ChatList: React.FC<Props> = ({ chatRooms, onChatRoomClick }) => {
             </TopArea>
 
             <BottomArea>
-                {chatRooms.map((chatRoom) => (
-                    <li key={chatRoom.id} onClick={() => onChatRoomClick(chatRoom.id)}>
-                        {chatRoom.name}
-                    </li>
-                ))}
+                {chatRooms.map((room) =>
+                    data[room] ? (
+                        <ChatListItem
+                            key={room}
+                            senderProfileImage={data[room].senderProfileImage}
+                            senderNickname={data[room].senderNickname}
+                            lastMessageDate={data[room].lastMessageDate}
+                            lastMessageContent={data[room].lastMessageContent}
+                            newMessageCount={data[room].newMessageCount}
+                            onClick={() => onChatRoomClick(room)}
+                            isActive={selectedChat === room}
+                        />
+                    ) : null
+                )}
             </BottomArea>
-        </ChatListBox>
+        </MateListBox>
     );
 };
+
 // emotion css style
-const ChatListBox = styled.div`
-    position: absolute;
+const MateListBox = styled.div`
+    position: relative;
     top: 0;
-    left: 50px;
-    width: 320px;
-    height: 600px;
-    // padding: 20px;
-    overflow-y: auto;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    left: 0;
+    width: 290px;
+    height: 100%;
+    padding: 20px;
+    background-color: cadetblue;
 `;
 const TopArea = styled.div`
-    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 150px;
-    background-color: #ffd4d4;
+    height: 80px;
+    margin-bottom: 10px;
+    background-color: green;
 `;
 const MateListButton = styled.button`
     display: inline-block;
@@ -87,17 +106,11 @@ const BottomArea = styled.ul`
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    height: 100%;
-    background-color: #f0f0f0;
+
     li {
-        cursor: pointer;
-        width: 100%;
-        height: 100px;
-        text-align: center;
+        padding-top: 20px;
         font-size: 20px;
         font-weight: 700;
-        line-height: 100px;
-        border-bottom: 1px solid #fff;
     }
 `;
 export default ChatList;

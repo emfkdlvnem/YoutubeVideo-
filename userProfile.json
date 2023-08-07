@@ -53,6 +53,34 @@
             "category": "헬스",
             "lat": 37.5572,
             "lng": 126.9267
+        },
+        {
+            "username": "강해린",
+            "password": "",
+            "email": "",
+            "address": "서울 마포구 동교로 225",
+            "profileImage": null,
+            "gender": true,
+            "favoriteSports": ["HIKING"],
+            "introduction": "",
+            "publicStatus": true,
+            "lat": 37.5602505563245,
+            "long": 126.923765612231,
+            "id": "FDPr_kv"
+        },
+        {
+            "username": "마동석",
+            "password": "",
+            "email": "",
+            "address": "서울 마포구 동교로 225",
+            "profileImage": null,
+            "gender": true,
+            "favoriteSports": ["HIKING", "WEIGHT"],
+            "introduction": "눈네모나게뜨쇼",
+            "publicStatus": true,
+            "lat": 37.5602505563245,
+            "long": 126.923765612231,
+            "id": "vFfK0RN"
         }
     ]
 }

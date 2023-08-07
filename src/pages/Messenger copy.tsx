@@ -1,5 +1,6 @@
 import React from 'react';
 import ChatApp from '../components/Messenger/ChatApp';
+// import ChatList from '../components/Messenger/ChatList';
 import styled from '@emotion/styled';
 
 interface Props {}
@@ -8,6 +9,7 @@ const Messenger: React.FC<Props> = () => {
     return (
         <Page>
             <Component>
+                {/* <ChatList /> */}
                 <ChatApp />
             </Component>
         </Page>

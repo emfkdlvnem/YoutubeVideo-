@@ -56,7 +56,6 @@ const ChatListBox = styled.div`
     left: 50px;
     width: 320px;
     height: 600px;
-    // padding: 20px;
     overflow-y: auto;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 `;
@@ -65,7 +64,7 @@ const TopArea = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 150px;
+    height: 120px;
     background-color: #ffd4d4;
 `;
 const MateListButton = styled.button`
@@ -88,15 +87,15 @@ const BottomArea = styled.ul`
     align-items: center;
     justify-content: space-between;
     height: 100%;
-    background-color: #f0f0f0;
+    // background-color: #f0f0f0;
     li {
         cursor: pointer;
         width: 100%;
-        height: 100px;
+        height: 80px;
         text-align: center;
         font-size: 20px;
         font-weight: 700;
-        line-height: 100px;
+        line-height: 80px;
         border-bottom: 1px solid #fff;
     }
 `;

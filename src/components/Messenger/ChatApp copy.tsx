@@ -25,19 +25,39 @@ const ChatApp: React.FC = () => {
             profileImage: profileImage,
         });
     };
-
     useEffect(() => {
-        // 여기에 웹 소켓 설정 및 데이터 가져오는 로직 추가
-        // ...
+        // const socket = io('ws://localhost:3001'); // 웹 소켓 서버 주소를 넣어주세요.
 
-        // 서버로부터 채팅방 리스트를 받아오는 로직을 임시로 해놓기
-        // 일단 여기서는 usersProfile.json 파일의 데이터를 사용하도록 가정
-        fetch('../../usersProfile.json')
+        // socket.on('connect', () => {
+        //     console.log('WebSocket connected');
+        // });
+
+        // socket.on('chatRooms', (chatRooms: ChatRoom[]) => {
+        //     setChatRooms(chatRooms);
+        // });
+
+        // socket.on('chatMessage', (message: { roomId: string; message: string }) => {
+        //     setChatMessages((prevMessages) => [...prevMessages, message]);
+        // });
+
+        // socket.on('disconnect', () => {
+        //     console.log('WebSocket disconnected');
+        // });
+
+        // // 컴포넌트가 언마운트될 때 웹 소켓 연결을 해제합니다.
+        // return () => {
+        //     socket.disconnect();
+        // };
+
+        // 서버로부터 채팅방 리스트를 받아오는 로직을 구현합니다.
+        // 여기서는 일단 하드코딩된 부분을 제거하고, usersProfile.json 파일의 데이터를 사용합니다.
+        // fetch 함수를 사용하여 데이터를 가져오는 것을 시뮬레이션하는 것으로 가정합니다.
+        fetch('/path/to/usersProfile.json')
             .then((response) => response.json())
             .then((data) => {
-                const usersInfo: UserProfile[] = data.usersInfo; // 데이터의 타입을 명시적으로 UserProfile[]로 지정
+                const usersInfo = data.usersInfo;
                 const chatRoomData = usersInfo.map((user) => ({
-                    id: user.username, // id를 username으로 설정
+                    id: user.id.toString(),
                     name: user.username,
                 }));
                 setChatRooms(chatRoomData);
@@ -46,14 +66,16 @@ const ChatApp: React.FC = () => {
                 if (chatRoomData.length > 0 && selectedChatRoom === null) {
                     setSelectedChatRoom(chatRoomData[0].id);
                 }
-
-                // 선택된 첫 번째 유저 프로필 정보 설정
-                const defaultUserProfile = usersInfo.find((user) => user.username === username);
-                if (defaultUserProfile) {
-                    updateUserProfile(defaultUserProfile.username, defaultUserProfile.profileImage);
-                }
             });
-    }, [selectedChatRoom, username]);
+        // 여기서 [] 의존성 배열을 빈 배열로 설정하여 useEffect가 컴포넌트 마운트될 때만 실행되도록
+    }, []);
+
+    useEffect(() => {
+        // 선택된 첫 번째 채팅방의 ID 설정
+        if (chatRooms.length > 0 && selectedChatRoom === null) {
+            setSelectedChatRoom(chatRooms[0].id);
+        }
+    }, [chatRooms, selectedChatRoom]);
 
     const handleChatRoomClick = (chatRoomId: string) => {
         setSelectedChatRoom(chatRoomId);
@@ -69,11 +91,17 @@ const ChatApp: React.FC = () => {
         ]);
 
         setInputMessage('');
+
+        setUserProfile({
+            username: username,
+            profileImage: null, // 여기에 프로필 이미지 URL
+        });
     };
 
     return (
         <ChatAppWrapper>
             <ChatList chatRooms={chatRooms} onChatRoomClick={handleChatRoomClick} />
+
             <ChatWindow
                 chatRoomId={selectedChatRoom}
                 chatMessages={chatMessages.filter((message) => message.roomId === selectedChatRoom)}
@@ -84,6 +112,7 @@ const ChatApp: React.FC = () => {
                 onUsernameChange={(e) => setUsername(e.target.value)}
                 chatRoomName={chatRooms.find((room) => room.id === selectedChatRoom)?.name}
                 userProfile={userProfile}
+                updateUserProfile={updateUserProfile}
             />
         </ChatAppWrapper>
     );

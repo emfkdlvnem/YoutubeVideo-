@@ -1,19 +1,102 @@
 {
-  "posts": [
-    {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
-    }
-  ],
-  "comments": [
-    {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
-    }
-  ],
-  "profile": {
-    "name": "typicode"
-  }
+    "usersInfo": [
+        {
+            "username": "아리아나",
+            "password": "",
+            "email": "qwerty1234@gmail.com",
+            "address": "부산 금정구 수내1길 1",
+            "profileImage": "./src/assets/default-user-image.png",
+            "gender": true,
+            "favoriteSports": [],
+            "introduction": "",
+            "publicStatus": true,
+            "lat": 37.557,
+            "long": 126.924,
+            "id": 1
+        },
+        {
+            "username": "나선욱",
+            "password": "",
+            "email": "qwerty1234@gmail.com",
+            "address": "부산 금정구 수내1길 1",
+            "profileImage": "./src/assets/default-user-image.png",
+            "gender": true,
+            "favoriteSports": [],
+            "introduction": "",
+            "publicStatus": true,
+            "latitude": 37.557,
+            "longitude": 126.924,
+            "id": 2
+        },
+        {
+            "username": "박명수",
+            "password": "",
+            "email": "qwerty1234@gmail.com",
+            "address": "부산 금정구 수내1길 1",
+            "profileImage": "./src/assets/default-user-image.png",
+            "gender": true,
+            "favoriteSports": [],
+            "introduction": "",
+            "publicStatus": true,
+            "lat": 37.5572,
+            "long": 126.9267,
+            "id": 3
+        },
+        {
+            "username": "전소미",
+            "password": "",
+            "email": "",
+            "address": "경기 성남시 분당구 돌마로 866",
+            "profileImage": "./src/assets/default-user-image.png",
+            "gender": true,
+            "favoriteSports": [],
+            "introduction": "",
+            "publicStatus": true,
+            "lat": 37.557,
+            "long": 126.924,
+            "id": 4
+        },
+        {
+            "username": "로제",
+            "password": "",
+            "email": "",
+            "address": "인천 연수구 아암대로 469",
+            "profileImage": "./src/assets/default-user-image.png",
+            "gender": true,
+            "favoriteSports": [],
+            "introduction": "",
+            "publicStatus": true,
+            "lat": 37.5565,
+            "long": 126.925,
+            "id": 5
+        },
+        {
+            "username": "강해린",
+            "password": "",
+            "email": "",
+            "address": "대전 동구 판교1길 3",
+            "profileImage": "./src/assets/default-user-image.png",
+            "gender": true,
+            "favoriteSports": [],
+            "introduction": "휴...",
+            "publicStatus": true,
+            "lat": 37.556,
+            "long": 126.9245,
+            "id": 6
+        },
+        {
+            "username": "제니",
+            "password": "",
+            "email": "",
+            "address": "서울 서초구 나루터로 15",
+            "profileImage": "./src/assets/default-user-image.png",
+            "gender": true,
+            "favoriteSports": [],
+            "introduction": "",
+            "publicStatus": true,
+            "lat": 37.5171300437436,
+            "long": 127.011390388152,
+            "id": 7
+        }
+    ]
 }

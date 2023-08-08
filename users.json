@@ -324,6 +324,34 @@
       "lat": 37.5171300437436,
       "long": 127.011390388152,
       "id": 25
+    },
+    {
+      "username": "",
+      "password": "",
+      "email": "",
+      "address": "서울 마포구 가양대로 1",
+      "profileImage": null,
+      "gender": true,
+      "favoriteSports": [],
+      "introduction": "ㄴㄴㄴ",
+      "publicStatus": true,
+      "lat": null,
+      "long": null,
+      "id": 26
+    },
+    {
+      "username": "",
+      "password": "",
+      "email": "",
+      "address": "서울 마포구 가양대로 1",
+      "profileImage": null,
+      "gender": true,
+      "favoriteSports": [],
+      "introduction": "ㄴㄴㄴ",
+      "publicStatus": true,
+      "lat": null,
+      "long": null,
+      "id": 27
     }
   ]
 }

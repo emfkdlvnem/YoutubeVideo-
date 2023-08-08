@@ -4,29 +4,34 @@ import styled from '@emotion/styled';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 
+interface UserProfile {
+    username: string;
+    profileImage: string | null;
+}
 interface Props {
     chatRoomId: string | null;
     chatMessages: { roomId: string; message: string }[];
     inputMessage: string;
     onInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-    onSendMessage: () => void;
+    onSendMessage: () => void; // 추가: 메시지 보내기 핸들러
     username: string;
     onUsernameChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-    chatRoomName: string | undefined; // 선택된 채팅방의 이름을 받아올 때
+    chatRoomName: string | undefined;
+    userProfile: UserProfile | null;
 }
-
 const ChatWindow: React.FC<Props> = ({
     chatRoomId,
     chatMessages,
     inputMessage,
     onInputChange,
-    onSendMessage,
+    onSendMessage, // 추가: 메시지 보내기 핸들러 사용
     username,
-    chatRoomName, // 선택된 채팅방의 이름을 받아올 때
+    chatRoomName,
+    userProfile,
 }) => {
     const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
         if (event.key === 'Enter') {
-            onSendMessage();
+            onSendMessage(); // 엔터키를 누르면 메시지 전송
         }
     };
     return (
@@ -34,7 +39,12 @@ const ChatWindow: React.FC<Props> = ({
             {chatRoomId ? (
                 <>
                     <TopArea>
-                        <NickNameTitle>{chatRoomName}</NickNameTitle>{' '}
+                        <ProfileWrapper>
+                            {userProfile?.profileImage && (
+                                <ProfileImage src={userProfile.profileImage} alt={username} />
+                            )}
+                            <NickNameTitle>{chatRoomName}</NickNameTitle>
+                        </ProfileWrapper>
                     </TopArea>
                     <TextBox>
                         <MessageArea>
@@ -91,6 +101,19 @@ const TopArea = styled.div`
         background-color: rgb(91, 75, 56);
     }
 `;
+// 프로필 이미지를 감싸는 스타일 컴포넌트
+const ProfileWrapper = styled.div`
+    display: flex;
+    align-items: center;
+`;
+
+// 프로필 이미지 스타일 컴포넌트
+const ProfileImage = styled.img`
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+`;
 const NickNameTitle = styled.strong`
     position: absolute;
     left: 50%;
@@ -101,26 +124,34 @@ const NickNameTitle = styled.strong`
 
 const TextBox = styled.div`
     position: relative;
+`;
+const MessageArea = styled.div`
+    position: absolute;
+    top: 20px;
+    overflow-y: auto;
+    width: 100%;
+    height: 400px;
+    // border: 1px solid rgb(91, 75, 56);
+`;
+const SendArea = styled.div`
+    position: absolute;
+    top: 430px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
     input {
         width: 800px;
         height: 40px;
-        margin-right: 10px;
+        margin-right: 0px;
         border: 1px solid #fff;
         border-radius: 5px;
         outline: none;
         font-size: 20px;
     }
-`;
-const MessageArea = styled.div`
-    position: absolute;
-    overflow-y: scroll;
-
-    background-color: rgb(91, 75, 56);
-`;
-const SendArea = styled.div`
-    position: absolute;
-    bottom: 0;
-    background-color: rgb(91, 75, 56);
 `;
 const SendBtn = styled.button`
     width: 40px;

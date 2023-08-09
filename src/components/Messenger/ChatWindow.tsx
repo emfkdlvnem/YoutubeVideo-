@@ -10,21 +10,24 @@ interface UserProfile {
 }
 interface Props {
     chatRoomId: string | null;
-    chatMessages: { roomId: string; message: string }[];
+    // chatMessages: { roomId: string; message: string }[];
+    chatMessages: { roomId: string; message: string; sentAt: Date }[]; // 보낸 시간 정보 추가
+
     inputMessage: string;
     onInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-    onSendMessage: () => void; // 추가: 메시지 보내기 핸들러
+    onSendMessage: () => void; // 메시지 보내기 핸들러
     username: string;
     onUsernameChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
     chatRoomName: string | undefined;
     userProfile: UserProfile | null;
 }
+
 const ChatWindow: React.FC<Props> = ({
     chatRoomId,
     chatMessages,
     inputMessage,
     onInputChange,
-    onSendMessage, // 추가: 메시지 보내기 핸들러 사용
+    onSendMessage,
     username,
     chatRoomName,
     userProfile,
@@ -34,6 +37,7 @@ const ChatWindow: React.FC<Props> = ({
             onSendMessage(); // 엔터키를 누르면 메시지 전송
         }
     };
+
     return (
         <ChatWindowBox>
             {chatRoomId ? (
@@ -49,11 +53,18 @@ const ChatWindow: React.FC<Props> = ({
                     <TextBox>
                         <MessageArea>
                             {chatMessages.map((message, index) => (
-                                <div key={index}>{message.message}</div>
+                                <MessageBox key={index}>
+                                    <MessageText>{message.message}</MessageText>
+                                    <MessageTime>
+                                        {message.sentAt.toLocaleTimeString([], {
+                                            hour: '2-digit',
+                                            minute: '2-digit',
+                                        })}
+                                    </MessageTime>{' '}
+                                </MessageBox>
                             ))}
                         </MessageArea>
                         <SendArea>
-                            <div>{username}</div>
                             <input
                                 type="text"
                                 value={inputMessage}
@@ -103,6 +114,11 @@ const TopArea = styled.div`
 `;
 // 프로필 이미지를 감싸는 스타일 컴포넌트
 const ProfileWrapper = styled.div`
+    position: absolute;
+    left: 50px;
+    top: 50%;
+    transform: translateY(-50%);
+
     display: flex;
     align-items: center;
 `;
@@ -112,36 +128,46 @@ const ProfileImage = styled.img`
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    margin-right: 10px;
 `;
 const NickNameTitle = styled.strong`
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
     font-size: 20px;
+    margin-left: 10px;
 `;
 
 const TextBox = styled.div`
-    position: relative;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    margin-top: 10px;
+    // background-color: rgb(91, 75, 56);
 `;
 const MessageArea = styled.div`
-    position: absolute;
-    top: 20px;
-    overflow-y: auto;
     width: 100%;
-    height: 400px;
-    // border: 1px solid rgb(91, 75, 56);
+    height: 405px;
+    margin-left: 50px;
+    overflow-y: auto;
 `;
-const SendArea = styled.div`
-    position: absolute;
-    top: 430px;
-    left: 50%;
-    transform: translateX(-50%);
+const MessageBox = styled.div`
+    display: flex;
+    align-items: flex-end;
+    padding: 8px;
+`;
+const MessageText = styled.div`
+    display: block;
+    font-size: 18px;
+`;
+const MessageTime = styled.div`
+    display: block;
+    font-size: 14px;
+    margin-left: 10px;
+`;
 
+const SendArea = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-top: 15px;
 
     input {
         width: 800px;
@@ -157,6 +183,6 @@ const SendBtn = styled.button`
     width: 40px;
     height: 40px;
     border: none;
-    background: none;
+    // background: none;
 `;
 export default ChatWindow;

@@ -97,6 +97,21 @@
             "lat": 37.5171300437436,
             "long": 127.011390388152,
             "id": 7
+        },
+
+        {
+            "username": "윤몽진",
+            "password": "",
+            "email": "",
+            "address": "서울 서초구 나루터로 15",
+            "profileImage": "./src/assets/default-user-image.png",
+            "gender": true,
+            "favoriteSports": [],
+            "introduction": "",
+            "publicStatus": true,
+            "lat": 37.5171300437436,
+            "long": 127.011390388152,
+            "id": 8
         }
     ]
 }

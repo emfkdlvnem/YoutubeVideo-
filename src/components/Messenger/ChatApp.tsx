@@ -3,14 +3,18 @@ import styled from '@emotion/styled';
 import ChatList from './ChatList';
 import ChatWindow from './ChatWindow';
 
+import stompClient from '../utils/websoket';
+
 interface ChatRoom {
     id: string;
     name: string;
+    profileImage: string | null;
 }
 interface UserProfile {
     username: string;
     profileImage: string | null;
 }
+
 const ChatApp: React.FC = () => {
     const [selectedChatRoom, setSelectedChatRoom] = useState<string | null>(null);
     const [chatRooms, setChatRooms] = useState<ChatRoom[]>([]);
@@ -18,13 +22,6 @@ const ChatApp: React.FC = () => {
     const [inputMessage, setInputMessage] = useState('');
     const [username, setUsername] = useState('');
     const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
-
-    const updateUserProfile = (username: string, profileImage: string | null) => {
-        setUserProfile({
-            username: username,
-            profileImage: profileImage,
-        });
-    };
 
     useEffect(() => {
         // 여기에 웹 소켓 설정 및 데이터 가져오는 로직 추가
@@ -39,6 +36,7 @@ const ChatApp: React.FC = () => {
                 const chatRoomData = usersInfo.map((user) => ({
                     id: user.username, // id를 username으로 설정
                     name: user.username,
+                    profileImage: user.profileImage,
                 }));
                 setChatRooms(chatRoomData);
 
@@ -48,24 +46,39 @@ const ChatApp: React.FC = () => {
                 }
 
                 // 선택된 첫 번째 유저 프로필 정보 설정
-                const defaultUserProfile = usersInfo.find((user) => user.username === username);
+                const defaultUserProfile = usersInfo[0]; // 임시로 첫 번째 프로필을 선택
                 if (defaultUserProfile) {
-                    updateUserProfile(defaultUserProfile.username, defaultUserProfile.profileImage);
+                    setUserProfile(defaultUserProfile);
+                    setUsername(defaultUserProfile.username);
                 }
             });
+        // 기본 유저 정보 설정
+        setUsername('윤몽진');
+
+        // Stomp.js 웹소켓 연결 시작
+        stompClient.activate();
+
+        // Stomp.js를 이용하여 채팅 메시지 구독 설정
+        stompClient.onConnect = () => {
+            console.log('WebSocket connected');
+        };
     }, [selectedChatRoom, username]);
 
     const handleChatRoomClick = (chatRoomId: string) => {
         setSelectedChatRoom(chatRoomId);
+        setInputMessage(''); // 클릭 시 메시지 입력창 초기화
     };
 
     const handleSendMessage = () => {
         if (inputMessage.trim() === '' || username.trim() === '') return;
 
         const newMessage = `${username}: ${inputMessage}`;
+        const currentTime = new Date(); // 현재 시간을 얻어옴
+
         setChatMessages((prevMessages) => [
             ...prevMessages,
-            { roomId: selectedChatRoom!, message: newMessage },
+            // { roomId: selectedChatRoom!, message: newMessage },
+            { roomId: selectedChatRoom!, message: newMessage, sentAt: currentTime }, // 보낸 시간 정보 추가
         ]);
 
         setInputMessage('');

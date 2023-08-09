@@ -9,6 +9,7 @@ import MateList from '../common/MateList';
 interface ChatRoom {
     id: string;
     name: string;
+    profileImage: string | null;
 }
 
 interface Props {
@@ -41,9 +42,14 @@ const ChatList: React.FC<Props> = ({ chatRooms, onChatRoomClick }) => {
 
             <BottomArea>
                 {chatRooms.map((chatRoom) => (
-                    <li key={chatRoom.id} onClick={() => onChatRoomClick(chatRoom.id)}>
-                        {chatRoom.name}
-                    </li>
+                    <ListItem key={chatRoom.id} onClick={() => onChatRoomClick(chatRoom.id)}>
+                        <ProfileImageWrapper>
+                            {chatRoom.profileImage && (
+                                <ProfileImage src={chatRoom.profileImage} alt={chatRoom.name} />
+                            )}
+                        </ProfileImageWrapper>
+                        <UserName>{chatRoom.name}</UserName>
+                    </ListItem>
                 ))}
             </BottomArea>
         </ChatListBox>
@@ -82,21 +88,30 @@ const MateListButton = styled.button`
 const MateListTitle = styled.h2``;
 
 const BottomArea = styled.ul`
+    background-color: lightblue;
+`;
+const ListItem = styled.li`
+    cursor: pointer;
     display: flex;
-    flex-direction: column;
+    justify-content: left;
     align-items: center;
-    justify-content: space-between;
-    height: 100%;
-    // background-color: #f0f0f0;
-    li {
-        cursor: pointer;
-        width: 100%;
-        height: 80px;
-        text-align: center;
-        font-size: 20px;
-        font-weight: 700;
-        line-height: 80px;
-        border-bottom: 1px solid #fff;
-    }
+    width: 100%;
+    height: 80px;
+    padding-left: 30px;
+    border-bottom: 1px solid #fff;
+`;
+const UserName = styled.li`
+    font-size: 18px;
+    font-weight: 700;
+`;
+
+const ProfileImageWrapper = styled.div`
+    margin-right: 10px;
+`;
+
+const ProfileImage = styled.img`
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
 `;
 export default ChatList;

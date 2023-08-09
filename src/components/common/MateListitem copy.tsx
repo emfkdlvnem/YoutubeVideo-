@@ -1,7 +1,6 @@
 import styled from '@emotion/styled';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPaperPlane as paperPlaneRegular } from '@fortawesome/free-regular-svg-icons';
-
+import { faPaperPlane } from '@fortawesome/free-regular-svg-icons';
 import { Link } from 'react-router-dom';
 
 interface Props {
@@ -22,7 +21,7 @@ const MateListItem: React.FC<Props> = ({ senderProfileImage, senderNickname }) =
             </MateListItemComponentElement>
             <MateListItemComponentElement>
                 <Link to="/messenger">
-                    <FaMessage icon={paperPlaneRegular} onClick={handleDMiconClick} />
+                    <FaMessage icon={faPaperPlane} onClick={handleDMiconClick} />
                 </Link>
                 <UnfollowButton>unfollow</UnfollowButton>
             </MateListItemComponentElement>
@@ -37,7 +36,7 @@ const MateListItemComponent = styled.div`
 
 const MateListItemComponentElement = styled.div`
     display: flex;
-    justify-content: space-between;
+    justify-contents: space-between;
     align-items: center;
 `;
 const ProfileImageContainer = styled.div`

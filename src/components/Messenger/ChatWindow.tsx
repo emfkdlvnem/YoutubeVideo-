@@ -10,7 +10,6 @@ interface UserProfile {
 }
 interface Props {
     chatRoomId: string | null;
-    // chatMessages: { roomId: string; message: string }[];
     chatMessages: { roomId: string; message: string; sentAt: Date }[]; // 보낸 시간 정보 추가
 
     inputMessage: string;

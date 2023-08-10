@@ -28,9 +28,11 @@
 // };
 // export default createWebSocket;
 
+
+// src/utils/websocket.ts
 import { Client } from '@stomp/stompjs';
 
-const SERVER_URL = 'ws://your-backend-url'; // 웹 소켓 서버 주소
+const SERVER_URL = 'ws://아직-backend-url'; // 웹 소켓 서버 주소
 
 // Stomp 클라이언트 생성
 const stompClient = new Client();
@@ -40,7 +42,6 @@ stompClient.configure({
     brokerURL: SERVER_URL,
     onConnect: () => {
         console.log('WebSocket connected');
-        // 연결에 성공하면 여기서 구독(subscribe) 설정 등을 수행합니다.
     },
     onDisconnect: () => {
         console.log('WebSocket disconnected');

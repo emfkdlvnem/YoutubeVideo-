@@ -26,6 +26,7 @@ interface UserProfile {
 interface UsersProfileData {
     usersInfo: UserProfile[];
 }
+
 const MateList: React.FC<Props> = ({ isOpen, onClose }) => {
     const [mateData, setMateData] = useState<MateData>({});
 

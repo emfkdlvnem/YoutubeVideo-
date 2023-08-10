@@ -12,7 +12,8 @@
             "publicStatus": true,
             "lat": 37.557,
             "long": 126.924,
-            "id": 1
+            "id": "아리아나",
+            "category": "러닝"
         },
         {
             "username": "나선욱",
@@ -24,9 +25,10 @@
             "favoriteSports": [],
             "introduction": "",
             "publicStatus": true,
-            "latitude": 37.557,
-            "longitude": 126.924,
-            "id": 2
+            "lat": 37.556862,
+            "long": 126.924678,
+            "id": "나선욱",
+            "category": "러닝"
         },
         {
             "username": "박명수",
@@ -40,7 +42,8 @@
             "publicStatus": true,
             "lat": 37.5572,
             "long": 126.9267,
-            "id": 3
+            "id": "박명수",
+            "category": "러닝"
         },
         {
             "username": "전소미",
@@ -54,7 +57,8 @@
             "publicStatus": true,
             "lat": 37.557,
             "long": 126.924,
-            "id": 4
+            "id": "전소미",
+            "category": "등산"
         },
         {
             "username": "로제",
@@ -68,7 +72,8 @@
             "publicStatus": true,
             "lat": 37.5565,
             "long": 126.925,
-            "id": 5
+            "id": "로제",
+            "category": "등산"
         },
         {
             "username": "강해린",
@@ -82,7 +87,8 @@
             "publicStatus": true,
             "lat": 37.556,
             "long": 126.9245,
-            "id": 6
+            "id": "강해린",
+            "category": "헬스"
         },
         {
             "username": "제니",
@@ -94,9 +100,10 @@
             "favoriteSports": [],
             "introduction": "",
             "publicStatus": true,
-            "lat": 37.5171300437436,
-            "long": 127.011390388152,
-            "id": 7
+            "lat": 37.555,
+            "long": 126.923,
+            "id": "제니",
+            "category": "헬스"
         },
 
         {
@@ -109,9 +116,10 @@
             "favoriteSports": [],
             "introduction": "",
             "publicStatus": true,
-            "lat": 37.5171300437436,
-            "long": 127.011390388152,
-            "id": 8
+            "lat": 37.559,
+            "long": 126.924,
+            "id": "윤몽진",
+            "category": "헬스"
         }
     ]
 }
